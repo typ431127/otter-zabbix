@@ -1,0 +1,53 @@
+zabbix_export:
+  version: '5.2'
+  date: '2021-06-04T08:02:47Z'
+  groups:
+    -
+      name: 'Linux servers'
+  templates:
+    -
+      template: otter
+      name: otter
+      groups:
+        -
+          name: 'Linux servers'
+      applications:
+        -
+          name: 'otter channel'
+        -
+          name: 'otter node'
+      discovery_rules:
+        -
+          name: 'otter chaneel discovery'
+          key: otter_discovery
+          item_prototypes:
+            -
+              name: 'otter channel {#CHANNEL_ID}'
+              key: 'otter.status[{#CHANNEL_ID}]'
+              trends: '0'
+              value_type: CHAR
+              applications:
+                -
+                  name: 'otter channel'
+              trigger_prototypes:
+                -
+                  expression: '{count(#3,"(STOP|PAUSE)",iregexp)}>2'
+                  name: 'otter channel  {#CHANNEL_ID} 挂起'
+                  priority: AVERAGE
+        -
+          name: 'otter node discovery'
+          key: otter_nodediscovery
+          item_prototypes:
+            -
+              name: 'otter-node {#NODE}'
+              key: 'otter.nodestatus[{#NODE}]'
+              applications:
+                -
+                  name: 'otter channel'
+                -
+                  name: 'otter node'
+              trigger_prototypes:
+                -
+                  expression: '{last(#3)}=0'
+                  name: 'otter node {#NODE} down'
+                  priority: AVERAGE
