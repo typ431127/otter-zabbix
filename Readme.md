@@ -2,6 +2,10 @@
 当`channel`挂起时触发报警，同时监控`otter node`，当node异常时同样触发报警。
 
 刚学习golang，写的不是很好，不喜勿喷
+### 测试环境
+- CentOS  7.6
+- Zabbix server 5.2.5
+
 ### 下载
 [linux系统](https://github.com/typ431127/otter-zabbix/releases/download/1.0/Otter-zabbix-linux-amd64.zip) 
 
@@ -10,6 +14,9 @@
 
 ### zabbix配置
 `zabbix_agentd.conf 配置示例 替换为自己的zk地址`
+
+![image](https://user-images.githubusercontent.com/20376675/120777092-82aaf280-c557-11eb-8578-6bab46ca027d.png)
+
 ```
 UserParameter=otter_discovery,/etc/zabbix/scripts/otter_zabbix -server 192.168.1.1:2181 -zabbixdiscovery
 UserParameter=otter_nodediscovery,/etc/zabbix/scripts/otter_zabbix -server 192.168.1.1:2181 -zabbixnodediscovery
