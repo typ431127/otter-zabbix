@@ -8,7 +8,30 @@
 
 ### 下载
 [linux系统](https://github.com/typ431127/otter-zabbix/releases/download/1.0/Otter-zabbix-linux-amd64.zip) 
-
+### 参数说明
+```
+参数说明:
+  -id string
+        channel ID (default "0")
+  -node
+        启用node监控
+  -server string
+        zk地址 (default "192.168.1.1:2181")
+  -timeout duration
+        设置连接超时时间 (default 10s)
+  -zabbixdiscovery
+        返回zabbix自动发现channel json数据
+  -zabbixnodediscovery
+        返回zabbix自动发现node json数据
+默认channel返回值说明:
+  START 启动
+  STOP  停止
+  PAUSE 挂起
+  NONE  不存在
+otter node返回值说明:
+  1 正常
+  0 停止
+```
 ### 文件说明
 `zbx_otter_templates.yaml` zabbix监控模板，测试版本:5.2.5
 
